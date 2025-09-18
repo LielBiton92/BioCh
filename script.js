@@ -4,40 +4,31 @@ const optionsContainer = document.getElementById('options-container');
 const feedbackMessage = document.getElementById('feedback-message');
 const nextButton = document.getElementById('next-button');
 
-// שומר עותק של כל השאלות המקוריות
 const allQuestions = [...questions];
 let availableQuestions = [...allQuestions];
 let currentQuestion = null;
 
-// משתנים למעקב אחר התוצאות
 let correctAnswersCount = 0;
 let incorrectQuestions = [];
 
-// משתנה חדש למעקב אחר מספר השאלות בסשן הנוכחי
 let totalQuestionsInCurrentSession = allQuestions.length;
 
-// פונקציה לטעינת שאלה אקראית
 function loadRandomQuestion() {
-    // אם נגמרו השאלות הזמינות, הצג את סיכום החידון
     if (availableQuestions.length === 0) {
         showQuizSummary();
         return;
     }
 
-    // בחר שאלה אקראית מתוך השאלות הזמינות
     const randomIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[randomIndex];
 
-    // הסר את השאלה מהמערך
     availableQuestions.splice(randomIndex, 1);
 
-    // נקה מסך והצג את השאלה
     optionsContainer.innerHTML = '';
     feedbackMessage.textContent = '';
     nextButton.style.display = 'none';
     questionText.textContent = currentQuestion.question;
 
-    // ערבב את האפשרויות וצור כפתורים
     const shuffledOptions = [...currentQuestion.options];
     shuffledOptions.sort(() => Math.random() - 0.5);
     shuffledOptions.forEach(option => {
@@ -124,4 +115,5 @@ function showQuizSummary() {
 document.addEventListener('DOMContentLoaded', loadRandomQuestion);
 
 // הוסף מאזין לאירוע לחיצה על כפתור "לשאלה הבאה"
+
 nextButton.addEventListener('click', loadRandomQuestion);
