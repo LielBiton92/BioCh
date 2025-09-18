@@ -91,7 +91,6 @@ h1 {
     display: none;
 }
 
-/* עיצוב כללי לכפתורי הפעולה בסיום החידון */
 .quiz-actions {
     display: flex;
     justify-content: center;
@@ -115,14 +114,13 @@ h1 {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* עיצוב ספציפי לכפתור "התחל מחדש את השאלות שטעיתי" */
 .redo-incorrect-btn {
-    background-color: #ff9800; /* כתום */
+    background-color: #ff9800;
     color: white;
 }
 
-/* עיצוב ספציפי לכפתור "התחל מחדש את כל השאלות" */
 .restart-all-btn {
-    background-color: #4caf50; /* ירוק */
+    background-color: #4caf50; 
     color: white;
+
 }
