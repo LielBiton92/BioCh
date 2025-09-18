@@ -1,4 +1,3 @@
-// קוד ה-JavaScript הראשי שלך
 const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
 const feedbackMessage = document.getElementById('feedback-message');
@@ -40,7 +39,6 @@ function loadRandomQuestion() {
     });
 }
 
-// פונקציה לבדיקת תשובת המשתמש
 function checkAnswer(selectedButton, selectedOption) {
     const isCorrect = selectedOption === currentQuestion.answer;
     document.querySelectorAll('.option-button').forEach(button => {
@@ -54,7 +52,6 @@ function checkAnswer(selectedButton, selectedOption) {
     } else {
         selectedButton.classList.add('incorrect');
         feedbackMessage.textContent = `טעות. התשובה הנכונה היא: ${currentQuestion.answer}`;
-        // שמור את השאלה השגויה במערך
         incorrectQuestions.push(currentQuestion);
         document.querySelectorAll('.option-button').forEach(button => {
             if (button.textContent === currentQuestion.answer) {
@@ -63,14 +60,11 @@ function checkAnswer(selectedButton, selectedOption) {
         });
     }
 
-    // הצג את כפתור "לשאלה הבאה"
     nextButton.style.display = 'block';
 }
 
-// פונקציה שמציגה את סיכום החידון ואת האפשרויות הנוספות
 function showQuizSummary() {
-    questionText.textContent = `כל הכבוד! סיימת את החידון.`;
-    // שינוי כאן: שימוש במשתנה החדש totalQuestionsInCurrentSession
+    questionText.textContent = `כל הכבוד! סיימת את כל השאלות.`;
     feedbackMessage.textContent = `ענית נכון על ${correctAnswersCount} מתוך ${totalQuestionsInCurrentSession} שאלות.`;
     optionsContainer.innerHTML = '';
     nextButton.style.display = 'none';
@@ -78,7 +72,6 @@ function showQuizSummary() {
     const actionButtonsContainer = document.createElement('div');
     actionButtonsContainer.classList.add('quiz-actions');
 
-    // כפתור "התחל מחדש את השאלות שטעיתי"
     if (incorrectQuestions.length > 0) {
         const redoIncorrectBtn = document.createElement('button');
         redoIncorrectBtn.textContent = 'התחל מחדש את השאלות שטעיתי';
@@ -87,14 +80,12 @@ function showQuizSummary() {
             availableQuestions = [...incorrectQuestions];
             incorrectQuestions = [];
             correctAnswersCount = 0;
-            // עדכון המשתנה עם מספר השאלות החדש
             totalQuestionsInCurrentSession = availableQuestions.length; 
             loadRandomQuestion();
         });
         actionButtonsContainer.appendChild(redoIncorrectBtn);
     }
 
-    // כפתור "התחל מחדש את כל השאלות"
     const restartAllBtn = document.createElement('button');
     restartAllBtn.textContent = 'התחל מחדש את כל השאלות';
     restartAllBtn.classList.add('action-button', 'restart-all-btn');
@@ -102,7 +93,6 @@ function showQuizSummary() {
         availableQuestions = [...allQuestions];
         incorrectQuestions = [];
         correctAnswersCount = 0;
-        // עדכון המשתנה עם מספר השאלות המקורי
         totalQuestionsInCurrentSession = allQuestions.length;
         loadRandomQuestion();
     });
@@ -111,9 +101,8 @@ function showQuizSummary() {
     optionsContainer.appendChild(actionButtonsContainer);
 }
 
-// טען שאלה ראשונית
 document.addEventListener('DOMContentLoaded', loadRandomQuestion);
 
-// הוסף מאזין לאירוע לחיצה על כפתור "לשאלה הבאה"
 
 nextButton.addEventListener('click', loadRandomQuestion);
+
